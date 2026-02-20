@@ -1,0 +1,23 @@
+{
+  "name": "itera-v1",
+  "version": "1.0.0",
+  "description": "This is the first version of ItEra Studio that I am developing as a mini project (4 weeks) for my Junior Seminar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mediabymadelyn/ItEra-v1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mediabymadelyn/ItEra-v1/issues"
+  },
+  "homepage": "https://github.com/mediabymadelyn/ItEra-v1#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
