@@ -33,22 +33,47 @@ Skill level: ${skillLevel}
 Intent: ${intent}
 Constraints: ${constraints}
 
-Return feedback in this format:
-Strengths:
-Improvements:
-Exercise:
+Respond ONLY in valid JSON.
+Do not include explanations.
+Do not include markdown.
+Do not include backticks.
+
+Use this exact format:
+
+{
+  "Strengths": "string",
+  "Improvements": "string",
+  "Exercise": "string"
+}
 `;
 
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: prompt,
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }]
+        }
+      ]
     });
 
-    res.json({ critique: response.text });
+    const rawText = response.candidates[0].content.parts[0].text;
+
+    let parsed;
+
+    try {
+      parsed = JSON.parse(rawText);
+    } catch (err) {
+      console.error("JSON PARSE ERROR:", rawText);
+      return res.status(500).json({ error: "Invalid JSON from model" });
+    }
+
+    return res.json(parsed);
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Model error" });
+    console.error("FULL ERROR:", error);
+    return res.status(500).json({ error: "Model error" });
   }
 });
 
