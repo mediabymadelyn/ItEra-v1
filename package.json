@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/mediabymadelyn/ItEra-v1#readme",
   "dependencies": {
+    "@google/genai": "^1.42.0",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1"
   }
 }
